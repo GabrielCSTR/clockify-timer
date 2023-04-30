@@ -22,6 +22,7 @@ import {
 import { User } from './types/user';
 import { Workspace, WorkspaceRequest } from './types/workspace';
 import { showError } from './util';
+import { ConfigurationTarget, workspace } from 'vscode';
 
 const BASE_URL = 'https://api.clockify.me/api/v1';
 
@@ -503,17 +504,12 @@ export class Clockify {
 					project: filter.project,
 					task: filter.task,
 					tags: filter.tags,
-					//eslint-disable-next-line @typescript-eslint/naming-convention
 					'project-required': filter.projectRequired ? '1' : undefined,
-					//eslint-disable-next-line @typescript-eslint/naming-convention
 					'task-required': filter.taskRequired ? '1' : undefined,
-					//eslint-disable-next-line @typescript-eslint/naming-convention
 					'consider-duration-format': filter.considerDurationFormat ? '1' : undefined,
 					hydrated: filter.hydrated ? '1' : undefined,
-					//eslint-disable-next-line @typescript-eslint/naming-convention
 					'in-progress': filter.inProgress ? '1' : undefined,
 					page: filter.page,
-					//eslint-disable-next-line @typescript-eslint/naming-convention
 					'page-size': filter.pageSize,
 				},
 				{ encodeValuesOnly: true }

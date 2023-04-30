@@ -16,13 +16,18 @@ export async function checkApiKey() {
             vscode.window.showErrorMessage('API key não informada');
             return;
         }
+        Config.set('apiKey', newApiKey, true);
+        
         Context.set('initialized', false);
 		GlobalState.set('initialized', false);
 
 		GlobalState.set('selectedWorkspace', null);
+		GlobalState.set('selectedClient', null);
+		GlobalState.set('selectedProject', null);
 		Context.set('workspaces:selected', false);
+		Context.set('clients:selected', false);
+		Context.set('projects:selected', false);
 
-        Config.set('apiKey', newApiKey, true);
     }
 
     Context.set('apiKey', apiKey);

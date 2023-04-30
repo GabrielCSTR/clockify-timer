@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 export class Config {
 
     private static getConfiguration(): vscode.WorkspaceConfiguration {
-		return vscode.workspace.getConfiguration('clockify-timer');
+		return vscode.workspace.getConfiguration('clockify');
 	}
 
     public static get<T>(key: any): T | undefined {

@@ -238,7 +238,7 @@
         },
         "clockify.fetchLimit": {
           "type": "number",
-          "default": 200,
+          "default": 10,
           "description": "Limit the number of items that will be fetched for displaying in the tree view."
         },
         "clockify.hideSensitiveData": {
@@ -331,7 +331,119 @@
         "contents": "To use the extension first add your API key. You can find your API key [here](https://app.clockify.me/user/settings#:~:text=Manage%20email%20preferences-,API,-Connect%20Clockify%20to)",
         "when": "!clockify.apiKey"
       }
-    ]
+    ], 
+    "menus": {
+      "view/title": [
+        {
+          "command": "clockify.workspaces.add",
+          "when": "view == clockify-workspaces",
+          "group": "navigation@1"
+        },
+        {
+          "command": "clockify.workspaces.refresh",
+          "when": "view == clockify-workspaces",
+          "group": "navigation@2"
+        },
+        {
+          "command": "clockify.clients.add",
+          "when": "view == clockify-clients",
+          "group": "navigation@1"
+        },
+        {
+          "command": "clockify.clients.refresh",
+          "when": "view == clockify-clients",
+          "group": "navigation@2"
+        },
+        {
+          "command": "clockify.projects.add",
+          "when": "view == clockify-projects",
+          "group": "navigation@1"
+        },
+        {
+          "command": "clockify.projects.refresh",
+          "when": "view == clockify-projects",
+          "group": "navigation@2"
+        },
+        {
+          "command": "clockify.tasks.add",
+          "when": "view == clockify-tasks",
+          "group": "navigation@1"
+        },
+        {
+          "command": "clockify.tasks.refresh",
+          "when": "view == clockify-tasks",
+          "group": "navigation@2"
+        },
+        {
+          "command": "clockify.tags.add",
+          "when": "view == clockify-tags",
+          "group": "navigation@1"
+        },
+        {
+          "command": "clockify.tags.refresh",
+          "when": "view == clockify-tags",
+          "group": "navigation@2"
+        },
+        {
+          "command": "clockify.timeentries.refresh",
+          "when": "view == clockify-timeentries",
+          "group": "navigation@1"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "clockify.workspaces.setAsDefault",
+          "when": "view == clockify-workspaces && viewItem == workspace"
+        },
+        {
+          "command": "clockify.workspaces.setAsWorkspaceDefault",
+          "when": "view == clockify-workspaces && viewItem == workspace"
+        },
+        {
+          "command": "clockify.clients.rename",
+          "when": "view == clockify-clients && viewItem == client",
+          "group": "inline"
+        },
+        {
+          "command": "clockify.clients.delete",
+          "when": "view == clockify-clients && viewItem == client"
+        },
+        {
+          "command": "clockify.projects.rename",
+          "when": "view == clockify-projects && viewItem == project",
+          "group": "inline"
+        },
+        {
+          "command": "clockify.projects.setAsDefault",
+          "when": "view == clockify-projects && viewItem == project"
+        },
+        {
+          "command": "clockify.projects.delete",
+          "when": "view == clockify-projects && viewItem == project"
+        },
+        {
+          "command": "clockify.tasks.setAsDefault",
+          "when": "view == clockify-tasks && viewItem == task"
+        },
+        {
+          "command": "clockify.tags.rename",
+          "when": "view == clockify-tags && viewItem == tag",
+          "group": "inline"
+        },
+        {
+          "command": "clockify.tags.delete",
+          "when": "view == clockify-tags && viewItem == tag"
+        },
+        {
+          "command": "clockify.tags.archive",
+          "when": "view == clockify-tags && viewItem == tag"
+        },
+        {
+          "command": "clockify.tags.unarchive",
+          "when": "view == clockify-tags && viewItem == tag-archived"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",

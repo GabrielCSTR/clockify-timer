@@ -17,6 +17,7 @@ import { TasksProvider } from './views/treeview/tasks';
 import { TagsProvider } from './views/treeview/tags';
 import { TimeentriesProvider } from './views/treeview/timeentries';
 import { Tracking } from './helpers/tracking';
+import { StatusBar } from './views/statusbar';
 export class WorkspaceTreeItem extends TreeItem {
 	constructor(public workspace: any, vscodeContext: ExtensionContext) {
 		super(workspace.name);
@@ -53,46 +54,22 @@ export async function activate(context: vscode.ExtensionContext) {
 	}, 5000);
 	//#endregion
 	
+	//#region status bar
+	await StatusBar.initialize(context);
+	setInterval(() => {
+		StatusBar.update();
+	}, 1000);
+	//#endregion
+
 	// refresh treeview when config changes
 	workspace.onDidChangeConfiguration((e) => {
 		// only listen for config changes in clockify config
 		if (e.affectsConfiguration('clockify')) {
 			checkApiKey();
 			TreeView.refresh();
-			// StatusBar.update();
+			StatusBar.update();
 		}
 	});
-	
-	// const apiKey = Config.get<string>('apiKey');
-	// if(apiKey) {
-	// 	// const treeDataProvider = new WorkspaceTreeDataProvider();
-	// 	const clockify = new ClockifyAPI(apiKey);
-	//   	const workspaces = await clockify.workspace.get();
-	// 	console.log(workspaces);
-	// 	const workspaceTreeItems = workspaces.map((workspace) => {
-	// 		return new WorkspaceTreeItem(workspace, context);
-	// 	});
-	// 	console.log(workspaceTreeItems);
-		
-	// 	const workspaceTreeView = vscode.window.createTreeView('clockify-workspaces', {
-	// 		treeDataProvider: {
-	// 		getChildren: (element?: any): any[] => {
-	// 			if (element) {
-	// 				return []; // retorna nós filhos vazios, pois não há nada abaixo de um workspace
-	// 			} else {
-	// 				return workspaceTreeItems;
-	// 			}
-	// 			},
-	// 			getTreeItem: (element: any): any => {
-	// 			return element;
-	// 			},
-	// 		},
-	// 	});
-	// 	context.subscriptions.push(workspaceTreeView);
-
-	// 	// const treeView = vscode.window.createTreeView('workspaces', { workspaces });
-		
-	// }
 }
 
 // This method is called when your extension is deactivated

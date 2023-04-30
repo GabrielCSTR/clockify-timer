@@ -1,4 +1,4 @@
-// import { StatusBar } from './../views/statusbar/index';
+import { StatusBar } from './../views/statusbar/index';
 import { TimeEntryImpl } from './../sdk/types/time-entry';
 import { Workspace } from './../sdk/types/workspace';
 import { Clockify } from '../sdk';
@@ -113,7 +113,7 @@ export class Tracking {
 		// update status bar
 		this.isTracking = false;
 		this.timeEntry = undefined;
-		// await StatusBar.update();
+		await StatusBar.update();
 		TreeView.refreshTimeentries();
 	}
 

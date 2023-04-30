@@ -11,6 +11,7 @@ import { registerCommands } from './commands';
 import { registerProvider } from './util/stores/register-provider';
 import { WorkspacesProvider } from './views/treeview/workspaces';
 import { TreeView } from './views/treeview';
+import { ClientsProvider } from './views/treeview/clients';
 export class WorkspaceTreeItem extends TreeItem {
 	constructor(public workspace: any, vscodeContext: ExtensionContext) {
 		super(workspace.name);
@@ -33,7 +34,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	
 	//#region tree view
 	registerProvider('workspaces', new WorkspacesProvider(context));
-	// registerProvider('clients', new ClientsProvider(context));
+	registerProvider('clients', new ClientsProvider(context));
 	// registerProvider('projects', new ProjectsProvider(context));
 	// registerProvider('tasks', new TasksProvider(context));
 	// registerProvider('tags', new TagsProvider(context));
@@ -80,16 +81,6 @@ export async function activate(context: vscode.ExtensionContext) {
 	// 	// const treeView = vscode.window.createTreeView('workspaces', { workspaces });
 		
 	// }
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	// let disposable = vscode.commands.registerCommand('clockify-timer.helloWorld', () => {
-	// 	// The code you place here will be executed every time your command is executed
-	// 	// Display a message box to the user
-	// 	vscode.window.showInformationMessage('Hello World from clockify-timer!');
-	// });
-
-	// context.subscriptions.push(disposable);
 }
 
 // This method is called when your extension is deactivated

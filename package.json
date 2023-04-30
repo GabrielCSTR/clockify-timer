@@ -43,6 +43,10 @@
           "name": "Workspaces"
         },
         {
+          "id": "clockify-clients",
+          "name": "Clients"
+        },
+        {
           "id": "clockify-projects",
           "name": "Projects"
         },

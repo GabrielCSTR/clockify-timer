@@ -1,11 +1,13 @@
 import { ProviderStore } from '../../util/stores/provider-store';
+import { ClientsProvider } from './clients';
+import { ClientItem } from './clients/items/item';
 import { WorkspacesProvider } from './workspaces';
 import { WorkspaceItem } from './workspaces/items/item';
 
 export class TreeView {
 	public static refresh() {
 		this.refreshWorkspaces();
-		// this.refreshClients();
+		this.refreshClients();
 		// this.refreshProjects();
 		// this.refreshTasks();
 		// this.refreshTags();
@@ -15,18 +17,18 @@ export class TreeView {
 	public static refreshWorkspaces(element?: WorkspaceItem): void {
 		const workspacesProvider = ProviderStore.get<WorkspacesProvider>('workspaces');
 		workspacesProvider.refresh(element);
-		// this.refreshClients();
+		this.refreshClients();
 		// this.refreshProjects();
 		// this.refreshTasks();
 		// this.refreshTags();
 		// this.refreshTimeentries();
 	}
 
-	// public static refreshClients(element?: ClientItem) {
-	// 	const clientsProvider = ProviderStore.get<ClientsProvider>('clients');
-	// 	clientsProvider.refresh(element);
-	// 	this.refreshProjects();
-	// }
+	public static refreshClients(element?: ClientItem) {
+		const clientsProvider = ProviderStore.get<ClientsProvider>('clients');
+		clientsProvider.refresh(element);
+		// this.refreshProjects();
+	}
 
 	// public static refreshProjects(element?: ProjectItem) {
 	// 	const projectsProvider = ProviderStore.get<ProjectsProvider>('projects');

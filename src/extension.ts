@@ -1,10 +1,6 @@
 import * as vscode from 'vscode';
 import { checkApiKey } from './util/check-api';
-import ClockifyAPI, { WorkspaceType } from 'clockify-ts';
-import { Config } from './util/config';
-import  Workspace  from 'clockify-ts';
-import { ExtensionContext, ThemeIcon, TreeItem, Uri, workspace } from 'vscode';
-import * as path from 'path';
+import { ExtensionContext, TreeItem, Uri, workspace } from 'vscode';
 import { Context } from './util/context';
 import { checkDefaultWorkspace } from './functions/check-default-workspace';
 import { registerCommands } from './commands';
@@ -18,6 +14,7 @@ import { TagsProvider } from './views/treeview/tags';
 import { TimeentriesProvider } from './views/treeview/timeentries';
 import { Tracking } from './helpers/tracking';
 import { StatusBar } from './views/statusbar';
+
 export class WorkspaceTreeItem extends TreeItem {
 	constructor(public workspace: any, vscodeContext: ExtensionContext) {
 		super(workspace.name);

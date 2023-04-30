@@ -9,21 +9,282 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "*"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "clockify-timer.helloWorld",
-        "title": "Hello World"
+        "command": "clockify.setApiKey",
+        "title": "Set API key",
+        "category": "Clockify"
+      },
+      {
+        "command": "clockify.refresh",
+        "title": "Refresh",
+        "category": "Clockify"
+      },
+      {
+        "command": "clockify.tracking.start",
+        "title": "Start tracking",
+        "category": "Clockify"
+      },
+      {
+        "command": "clockify.tracking.stop",
+        "title": "Stop tracking",
+        "category": "Clockify"
+      },
+      {
+        "command": "clockify.workspaces.refresh",
+        "title": "Refresh Workspaces",
+        "shortTitle": "Refresh",
+        "category": "Clockify",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "clockify.workspaces.selection",
+        "title": "Select Workspace",
+        "shortTitle": "Select",
+        "category": "Clockify"
+      },
+      {
+        "command": "clockify.workspaces.setAsDefault",
+        "title": "Set as default",
+        "shortTitle": "Set Default",
+        "category": "Clockify",
+        "enablement": "viewItem == workspace"
+      },
+      {
+        "command": "clockify.workspaces.setAsWorkspaceDefault",
+        "title": "Set as default for this workspace",
+        "shortTitle": "Set Default for Workspace",
+        "category": "Clockify",
+        "enablement": "viewItem == workspace"
+      },
+      {
+        "command": "clockify.workspaces.add",
+        "title": "Add Workspace",
+        "shortTitle": "Add",
+        "category": "Clockify",
+        "icon": "$(add)"
+      },
+      {
+        "command": "clockify.clients.refresh",
+        "title": "Refresh Clients",
+        "shortTitle": "Refresh",
+        "category": "Clockify",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "clockify.clients.selection",
+        "title": "Select Client",
+        "shortTitle": "Select",
+        "category": "Clockify"
+      },
+      {
+        "command": "clockify.clients.add",
+        "title": "Add Client",
+        "shortTitle": "Add",
+        "category": "Clockify",
+        "icon": "$(add)"
+      },
+      {
+        "command": "clockify.clients.rename",
+        "title": "Rename Client",
+        "shortTitle": "Rename",
+        "category": "Clockify",
+        "icon": "$(edit)",
+        "enablement": "viewItem == client"
+      },
+      {
+        "command": "clockify.clients.delete",
+        "title": "Delete Client",
+        "shortTitle": "Delete",
+        "category": "Clockify",
+        "icon": "$(trash)",
+        "enablement": "viewItem == client"
+      },
+      {
+        "command": "clockify.projects.refresh",
+        "title": "Refresh Projects",
+        "shortTitle": "Refresh",
+        "category": "Clockify",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "clockify.projects.selection",
+        "title": "Select Project",
+        "shortTitle": "Select",
+        "category": "Clockify"
+      },
+      {
+        "command": "clockify.projects.setAsDefault",
+        "title": "Set as default for this workspace",
+        "shortTitle": "Set Default",
+        "category": "Clockify",
+        "enablement": "viewItem == project"
+      },
+      {
+        "command": "clockify.projects.add",
+        "title": "Add Project",
+        "shortTitle": "Add",
+        "category": "Clockify",
+        "icon": "$(add)"
+      },
+      {
+        "command": "clockify.projects.rename",
+        "title": "Rename Project",
+        "shortTitle": "Rename",
+        "category": "Clockify",
+        "icon": "$(edit)",
+        "enablement": "viewItem == project"
+      },
+      {
+        "command": "clockify.projects.delete",
+        "title": "Delete Project",
+        "shortTitle": "Delete",
+        "category": "Clockify",
+        "icon": "$(trash)",
+        "enablement": "viewItem == project"
+      },
+      {
+        "command": "clockify.tasks.refresh",
+        "title": "Refresh Tasks",
+        "shortTitle": "Refresh",
+        "category": "Clockify",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "clockify.tasks.setAsDefault",
+        "title": "Set as default for this workspace",
+        "shortTitle": "Set Default",
+        "category": "Clockify",
+        "enablement": "viewItem == task"
+      },
+      {
+        "command": "clockify.tasks.add",
+        "title": "Add Task",
+        "shortTitle": "Add",
+        "category": "Clockify",
+        "icon": "$(add)"
+      },
+      {
+        "command": "clockify.tags.refresh",
+        "title": "Refresh Tags",
+        "shortTitle": "Refresh",
+        "category": "Clockify",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "clockify.tags.add",
+        "title": "Add Tag",
+        "shortTitle": "Add",
+        "category": "Clockify",
+        "icon": "$(add)"
+      },
+      {
+        "command": "clockify.tags.rename",
+        "title": "Rename Tag",
+        "shortTitle": "Rename",
+        "category": "Clockify",
+        "icon": "$(edit)",
+        "enablement": "viewItem == tag"
+      },
+      {
+        "command": "clockify.tags.delete",
+        "title": "Delete Tag",
+        "shortTitle": "Delete",
+        "category": "Clockify",
+        "icon": "$(trash)",
+        "enablement": "viewItem == tag"
+      },
+      {
+        "command": "clockify.tags.archive",
+        "title": "Archive Tag",
+        "shortTitle": "Archive",
+        "category": "Clockify",
+        "icon": "$(archive)",
+        "enablement": "viewItem == tag"
+      },
+      {
+        "command": "clockify.tags.unarchive",
+        "title": "Unarchive Tag",
+        "shortTitle": "Unarchive",
+        "category": "Clockify",
+        "icon": "$(inbox)",
+        "enablement": "viewItem == tag-archived"
+      },
+      {
+        "command": "clockify.timeentries.refresh",
+        "title": "Refresh Time Entries",
+        "shortTitle": "Refresh",
+        "category": "Clockify",
+        "icon": "$(refresh)"
       }
     ],
     "configuration": {
-      "type": "object",
-      "title": "Configurações do Clockify Timer",
+      "title": "Clockify Tracker",
       "properties": {
-        "clockify-timer.apiKey": {
-          "type": "string"
+        "clockify.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "The clockify API key."
+        },
+        "clockify.defaultWorkspaceId": {
+          "type": "string",
+          "default": "",
+          "description": "The ID of the default workspace in which start tracking (if no workspace ID is set in the workspaces settings.json)"
+        },
+        "clockify.fetchLimit": {
+          "type": "number",
+          "default": 200,
+          "description": "Limit the number of items that will be fetched for displaying in the tree view."
+        },
+        "clockify.hideSensitiveData": {
+          "type": "boolean",
+          "default": false,
+          "description": "Hide sensitive data. Can be useful for screenshots."
+        },
+        "clockify.showIds": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show IDs of the data."
+        },
+        "clockify.workspaces.showNumberOfMembers": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the number of members for each workspace."
+        },
+        "clockify.tracking.workspaceId": {
+          "type": "string",
+          "default": "",
+          "description": "The ID of the default workspace."
+        },
+        "clockify.tracking.projectId": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "The ID of the default project in the workspace. `#clockify.tracking.workspaceId#` must be set."
+        },
+        "clockify.tracking.taskId": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "The ID of the default task in the workspace. `#clockify.tracking.workspaceId#` must be set."
+        },
+        "clockify.tracking.billable": {
+          "type": "boolean",
+          "default": false,
+          "description": "Check if Time Entry is billable."
+        },
+        "clockify.tracking.autostart": {
+          "type": "boolean",
+          "default": false,
+          "description": "Start tracking with opening the IDE."
+        },
+        "clockify.tracking.autostop": {
+          "type": "boolean",
+          "default": true,
+          "description": "Stop tracking with closing the IDE."
         }
       }
     },
@@ -31,7 +292,7 @@
       "activitybar": [
         {
           "id": "clockify-timer",
-          "title": "Clockify Time",
+          "title": "Clockify Timer",
           "icon": "assets/icon.svg"
         }
       ]
@@ -63,7 +324,14 @@
           "name": "Timeentries"
         }
       ]
-    }
+    },
+    "viewsWelcome": [
+      {
+        "view": "clockify-timer",
+        "contents": "To use the extension first add your API key. You can find your API key [here](https://app.clockify.me/user/settings#:~:text=Manage%20email%20preferences-,API,-Connect%20Clockify%20to)",
+        "when": "!clockify.apiKey"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",

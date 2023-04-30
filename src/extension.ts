@@ -15,15 +15,6 @@ import { TimeentriesProvider } from './views/treeview/timeentries';
 import { Tracking } from './helpers/tracking';
 import { StatusBar } from './views/statusbar';
 
-export class WorkspaceTreeItem extends TreeItem {
-	constructor(public workspace: any, vscodeContext: ExtensionContext) {
-		super(workspace.name);
-		this.contextValue = 'workspace';
-		this.description = 'Workspace description'; // Define a descrição
-		this.iconPath =  Uri.joinPath(vscodeContext.extensionUri, 'assets', 'bytes.svg'); // Define o ícone
-		this.tooltip = 'Workspace tooltip'; // Define o tooltip
-	}
-  }
 export async function activate(context: vscode.ExtensionContext) {
 
 	console.log('[clockify-timer] Activating extension...');

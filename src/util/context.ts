@@ -29,6 +29,6 @@ export class Context {
 	 * @param {any} value The value
 	 */
 	public static set(key: ContextValueKey, value: any) {
-		commands.executeCommand('setContext', `clockify.${key}`, value);
+		commands.executeCommand('setContext', `clockify.timer.${key}`, value);
 	}
 }

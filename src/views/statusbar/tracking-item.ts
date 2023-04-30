@@ -8,18 +8,18 @@ import {
 } from 'vscode';
 import { Commands } from '../../config/commands';
 import { Tracking } from '../../helpers/tracking';
-
+let last90DaysAverage: moment.Duration;
 export class StatusBarTrackingItem {
-	public readonly item: StatusBarItem;
+	public readonly clockItem: StatusBarItem;
 
 	constructor(ctx: ExtensionContext, alignment: StatusBarAlignment, priority: number) {
-		this.item = window.createStatusBarItem(alignment, priority);
-		this.item.show();
-		ctx.subscriptions.push(this.item);
+		this.clockItem = window.createStatusBarItem(alignment, priority);
+		this.clockItem.show();
+		ctx.subscriptions.push(this.clockItem);
 
-		this.item.text = 'Clockify';
-		this.item.name = 'Current Tracking';
-		this.item.tooltip = 'Start tracking to display information.';
+		this.clockItem.text = 'Clockify';
+		this.clockItem.name = 'Current Tracking';
+		this.clockItem.tooltip = 'Start tracking to display information.';
 	}
 
 	public async update() {
@@ -28,11 +28,11 @@ export class StatusBarTrackingItem {
 				moment().diff(moment(Tracking.timeEntry.timeInterval.start))
 			);
 
-			this.item.text = duration.format('h[h] m[m] s[s]');
+			this.clockItem.text = `⏰${duration.format('h[h] m[m] s[s]')}`;
 
 			const tooltipLines: string[] = [];
 			if (Tracking.description) {
-				tooltipLines.push(Tracking.description);
+				tooltipLines.push(`**Atividade:** ${Tracking.description}`);
 			}
 			if (Tracking.workspace) {
 				tooltipLines.push(`**Workspace:** ${Tracking.workspace.name}`);
@@ -44,16 +44,16 @@ export class StatusBarTrackingItem {
 				tooltipLines.push(`**Task:** ${Tracking.task.name}`);
 			}
 			tooltipLines.push('_Click to update info_');
-			this.item.tooltip = new MarkdownString(tooltipLines.join('\n\n'));
-			this.item.command = {
+			this.clockItem.tooltip = new MarkdownString(tooltipLines.join('\n\n'));
+			this.clockItem.command = {
 				title: 'Update information',
 				command: Commands.trackingUpdateInformation,
 				tooltip: 'Update tracking information',
 			};
 		} else {
-			this.item.text = 'Clockify';
-			this.item.name = 'Current Tracking';
-			this.item.tooltip = 'Start tracking to display information.';
+			this.clockItem.text = '⏰ Clockify Timer';
+			this.clockItem.name = 'Current Tracking';
+			this.clockItem.tooltip = 'Start tracking to display information.';
 		}
 	}
 }

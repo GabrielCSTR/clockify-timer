@@ -146,7 +146,6 @@ export class Clockify {
 					name: filter?.name,
 					archived: filter?.archived,
 					page: filter?.page,
-					//eslint-disable-next-line @typescript-eslint/naming-convention
 					'page-size': filter?.pageSize,
 				},
 				{ encodeValuesOnly: true }

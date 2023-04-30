@@ -3,8 +3,12 @@ import { ClientsProvider } from './clients';
 import { ClientItem } from './clients/items/item';
 import { ProjectsProvider } from './projects';
 import { ProjectItem } from './projects/items/item';
+import { TagsProvider } from './tags';
+import { TagItem } from './tags/items/item';
 import { TasksProvider } from './tasks';
 import { TaskItem } from './tasks/items/item';
+import { TimeentriesProvider } from './timeentries';
+import { TimeentryItem } from './timeentries/items/item';
 import { WorkspacesProvider } from './workspaces';
 import { WorkspaceItem } from './workspaces/items/item';
 
@@ -14,8 +18,8 @@ export class TreeView {
 		this.refreshClients();
 		this.refreshProjects();
 		this.refreshTasks();
-		// this.refreshTags();
-		// this.refreshTimeentries();
+		this.refreshTags();
+		this.refreshTimeentries();
 	}
 
 	public static refreshWorkspaces(element?: WorkspaceItem): void {
@@ -24,8 +28,8 @@ export class TreeView {
 		this.refreshClients();
 		this.refreshProjects();
 		this.refreshTasks();
-		// this.refreshTags();
-		// this.refreshTimeentries();
+		this.refreshTags();
+		this.refreshTimeentries();
 	}
 
 	public static refreshClients(element?: ClientItem) {
@@ -44,13 +48,13 @@ export class TreeView {
 		tasksProvider.refresh(element);
 	}
 
-	// public static refreshTags(element?: TagItem) {
-	// 	const tagsProvider = ProviderStore.get<TagsProvider>('tags');
-	// 	tagsProvider.refresh(element);
-	// }
+	public static refreshTags(element?: TagItem) {
+		const tagsProvider = ProviderStore.get<TagsProvider>('tags');
+		tagsProvider.refresh(element);
+	}
 
-	// public static refreshTimeentries(element?: TimeentryItem) {
-	// 	const timeentriesProvider = ProviderStore.get<TimeentriesProvider>('timeentries');
-	// 	timeentriesProvider.refresh(element);
-	// }
+	public static refreshTimeentries(element?: TimeentryItem) {
+		const timeentriesProvider = ProviderStore.get<TimeentriesProvider>('timeentries');
+		timeentriesProvider.refresh(element);
+	}
 }

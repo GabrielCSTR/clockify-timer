@@ -77,7 +77,7 @@ export class Tracking {
 			billable: this.billable,
 		});
 		this.update();
-		// TreeView.refreshTimeentries();
+		TreeView.refreshTimeentries();
 	}
 
 	/**
@@ -114,7 +114,7 @@ export class Tracking {
 		this.isTracking = false;
 		this.timeEntry = undefined;
 		// await StatusBar.update();
-		// TreeView.refreshTimeentries();
+		TreeView.refreshTimeentries();
 	}
 
 	/**
@@ -167,7 +167,7 @@ export class Tracking {
 			start: this.timeEntry.timeInterval.start,
 		});
 
-		// TreeView.refreshTimeentries();
+		TreeView.refreshTimeentries();
 	}
 
 	//#region start

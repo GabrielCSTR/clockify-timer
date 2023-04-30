@@ -14,6 +14,9 @@ import { TreeView } from './views/treeview';
 import { ClientsProvider } from './views/treeview/clients';
 import { ProjectsProvider } from './views/treeview/projects';
 import { TasksProvider } from './views/treeview/tasks';
+import { TagsProvider } from './views/treeview/tags';
+import { TimeentriesProvider } from './views/treeview/timeentries';
+import { Tracking } from './helpers/tracking';
 export class WorkspaceTreeItem extends TreeItem {
 	constructor(public workspace: any, vscodeContext: ExtensionContext) {
 		super(workspace.name);
@@ -39,10 +42,17 @@ export async function activate(context: vscode.ExtensionContext) {
 	registerProvider('clients', new ClientsProvider(context));
 	registerProvider('projects', new ProjectsProvider(context));
 	registerProvider('tasks', new TasksProvider(context));
-	// registerProvider('tags', new TagsProvider(context));
-	// registerProvider('timeentries', new TimeentriesProvider(context));
+	registerProvider('tags', new TagsProvider(context));
+	registerProvider('timeentries', new TimeentriesProvider(context));
 	//#endregion
 
+	//#region tracking
+	await Tracking.initialize();
+	setInterval(() => {
+		Tracking.update();
+	}, 5000);
+	//#endregion
+	
 	// refresh treeview when config changes
 	workspace.onDidChangeConfiguration((e) => {
 		// only listen for config changes in clockify config
@@ -86,4 +96,6 @@ export async function activate(context: vscode.ExtensionContext) {
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export async function deactivate() {
+	await Tracking.dispose();
+}

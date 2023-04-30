@@ -15,5 +15,5 @@ export async function selectProject(project?: Project): Promise<void> {
 	// refresh tree views
 	TreeView.refreshProjects();
 	TreeView.refreshTasks();
-	// TreeView.refreshTimeentries();
+	TreeView.refreshTimeentries();
 }

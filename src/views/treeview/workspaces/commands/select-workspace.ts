@@ -16,8 +16,8 @@ export async function selectWorkspace(workspace: Workspace): Promise<void> {
 		GlobalState.set('selectedProject', null);
 
 		TreeView.refreshWorkspaces();
-		// TreeView.refreshClients();
-		// TreeView.refreshProjects();
+		TreeView.refreshClients();
+		TreeView.refreshProjects();
 		// TreeView.refreshTasks();
 		// TreeView.refreshTags();
 		// TreeView.refreshTimeentries();

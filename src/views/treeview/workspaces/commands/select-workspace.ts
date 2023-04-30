@@ -18,7 +18,7 @@ export async function selectWorkspace(workspace: Workspace): Promise<void> {
 		TreeView.refreshWorkspaces();
 		TreeView.refreshClients();
 		TreeView.refreshProjects();
-		// TreeView.refreshTasks();
+		TreeView.refreshTasks();
 		// TreeView.refreshTags();
 		// TreeView.refreshTimeentries();
 	}

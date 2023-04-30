@@ -17,5 +17,5 @@ export async function selectClient(client?: Client): Promise<void> {
 	// refresh tree views
 	TreeView.refreshClients();
 	TreeView.refreshProjects();
-	// TreeView.refreshTasks();
+	TreeView.refreshTasks();
 }

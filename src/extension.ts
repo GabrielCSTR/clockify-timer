@@ -13,6 +13,7 @@ import { WorkspacesProvider } from './views/treeview/workspaces';
 import { TreeView } from './views/treeview';
 import { ClientsProvider } from './views/treeview/clients';
 import { ProjectsProvider } from './views/treeview/projects';
+import { TasksProvider } from './views/treeview/tasks';
 export class WorkspaceTreeItem extends TreeItem {
 	constructor(public workspace: any, vscodeContext: ExtensionContext) {
 		super(workspace.name);
@@ -37,7 +38,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	registerProvider('workspaces', new WorkspacesProvider(context));
 	registerProvider('clients', new ClientsProvider(context));
 	registerProvider('projects', new ProjectsProvider(context));
-	// registerProvider('tasks', new TasksProvider(context));
+	registerProvider('tasks', new TasksProvider(context));
 	// registerProvider('tags', new TagsProvider(context));
 	// registerProvider('timeentries', new TimeentriesProvider(context));
 	//#endregion

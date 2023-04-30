@@ -3,6 +3,8 @@ import { ClientsProvider } from './clients';
 import { ClientItem } from './clients/items/item';
 import { ProjectsProvider } from './projects';
 import { ProjectItem } from './projects/items/item';
+import { TasksProvider } from './tasks';
+import { TaskItem } from './tasks/items/item';
 import { WorkspacesProvider } from './workspaces';
 import { WorkspaceItem } from './workspaces/items/item';
 
@@ -11,7 +13,7 @@ export class TreeView {
 		this.refreshWorkspaces();
 		this.refreshClients();
 		this.refreshProjects();
-		// this.refreshTasks();
+		this.refreshTasks();
 		// this.refreshTags();
 		// this.refreshTimeentries();
 	}
@@ -21,7 +23,7 @@ export class TreeView {
 		workspacesProvider.refresh(element);
 		this.refreshClients();
 		this.refreshProjects();
-		// this.refreshTasks();
+		this.refreshTasks();
 		// this.refreshTags();
 		// this.refreshTimeentries();
 	}
@@ -37,10 +39,10 @@ export class TreeView {
 		projectsProvider.refresh(element);
 	}
 
-	// public static refreshTasks(element?: TaskItem) {
-	// 	const tasksProvider = ProviderStore.get<TasksProvider>('tasks');
-	// 	tasksProvider.refresh(element);
-	// }
+	public static refreshTasks(element?: TaskItem) {
+		const tasksProvider = ProviderStore.get<TasksProvider>('tasks');
+		tasksProvider.refresh(element);
+	}
 
 	// public static refreshTags(element?: TagItem) {
 	// 	const tagsProvider = ProviderStore.get<TagsProvider>('tags');

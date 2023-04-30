@@ -1,25 +1,95 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { checkApiKey } from './util/check-api';
+import ClockifyAPI, { WorkspaceType } from 'clockify-ts';
+import { Config } from './util/config';
+import  Workspace  from 'clockify-ts';
+import { ExtensionContext, ThemeIcon, TreeItem, Uri, workspace } from 'vscode';
+import * as path from 'path';
+import { Context } from './util/context';
+import { checkDefaultWorkspace } from './functions/check-default-workspace';
+import { registerCommands } from './commands';
+import { registerProvider } from './util/stores/register-provider';
+import { WorkspacesProvider } from './views/treeview/workspaces';
+import { TreeView } from './views/treeview';
+export class WorkspaceTreeItem extends TreeItem {
+	constructor(public workspace: any, vscodeContext: ExtensionContext) {
+		super(workspace.name);
+		this.contextValue = 'workspace';
+		this.description = 'Workspace description'; // Define a descrição
+		this.iconPath =  Uri.joinPath(vscodeContext.extensionUri, 'assets', 'bytes.svg'); // Define o ícone
+		this.tooltip = 'Workspace tooltip'; // Define o tooltip
+	}
+  }
+export async function activate(context: vscode.ExtensionContext) {
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+	console.log('[clockify-timer] Activating extension...');
+	Context.setObject(context);
+	Context.set('initialized', false);
+	// Check Clockify ApiKey
+	checkApiKey();
+	await checkDefaultWorkspace();
+	
+	registerCommands(context);
+	
+	//#region tree view
+	registerProvider('workspaces', new WorkspacesProvider(context));
+	// registerProvider('clients', new ClientsProvider(context));
+	// registerProvider('projects', new ProjectsProvider(context));
+	// registerProvider('tasks', new TasksProvider(context));
+	// registerProvider('tags', new TagsProvider(context));
+	// registerProvider('timeentries', new TimeentriesProvider(context));
+	//#endregion
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "clockify-timer" is now active!');
+	// refresh treeview when config changes
+	workspace.onDidChangeConfiguration((e) => {
+		// only listen for config changes in clockify config
+		if (e.affectsConfiguration('clockify')) {
+			checkApiKey();
+			TreeView.refresh();
+			// StatusBar.update();
+		}
+	});
+	
+	// const apiKey = Config.get<string>('apiKey');
+	// if(apiKey) {
+	// 	// const treeDataProvider = new WorkspaceTreeDataProvider();
+	// 	const clockify = new ClockifyAPI(apiKey);
+	//   	const workspaces = await clockify.workspace.get();
+	// 	console.log(workspaces);
+	// 	const workspaceTreeItems = workspaces.map((workspace) => {
+	// 		return new WorkspaceTreeItem(workspace, context);
+	// 	});
+	// 	console.log(workspaceTreeItems);
+		
+	// 	const workspaceTreeView = vscode.window.createTreeView('clockify-workspaces', {
+	// 		treeDataProvider: {
+	// 		getChildren: (element?: any): any[] => {
+	// 			if (element) {
+	// 				return []; // retorna nós filhos vazios, pois não há nada abaixo de um workspace
+	// 			} else {
+	// 				return workspaceTreeItems;
+	// 			}
+	// 			},
+	// 			getTreeItem: (element: any): any => {
+	// 			return element;
+	// 			},
+	// 		},
+	// 	});
+	// 	context.subscriptions.push(workspaceTreeView);
 
+	// 	// const treeView = vscode.window.createTreeView('workspaces', { workspaces });
+		
+	// }
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('clockify-timer.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from clockify-timer!');
-	});
+	// let disposable = vscode.commands.registerCommand('clockify-timer.helloWorld', () => {
+	// 	// The code you place here will be executed every time your command is executed
+	// 	// Display a message box to the user
+	// 	vscode.window.showInformationMessage('Hello World from clockify-timer!');
+	// });
 
-	context.subscriptions.push(disposable);
+	// context.subscriptions.push(disposable);
 }
 
 // This method is called when your extension is deactivated

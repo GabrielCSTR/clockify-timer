@@ -19,22 +19,19 @@ With Clockify Timer, you can:
 ## Functions
 The Clockify Timer extension adds a Time Tracker view to VS Code, where you can start, stop, and switch between time entries. This view displays your current time entry and a list of your previous time entries.
 
-##Workspace and Project Selector
+## Workspace and Project Selector
 The extension allows you to select the active workspace and project, making it easy to switch between different projects and keep track of your time accordingly.
 
 ## Installation
 You can install the Clockify Timer extension from the VSCode Marketplace or by running the following command in the Quick Open window (`Ctrl+P`):
 ```
-ext install gabrielcstr.clockify-timer
+ext install gabrielcarlos.clockify-timer
 ```
 
 Or you can just search for "Clockify Timer" in the Extensions view.
 
-## Preview
-![Clockify TreeView screenshot](images/preview.png)
-
 ## Getting Started
-For more information on how to use the Clockify Timer extension, please see the [Getting Started](https://github.com/tobiaswaelde/vscode-clockify/wiki/Home) in the project wiki.
+For more information on how to use the Clockify Timer extension, please see the [Getting Started](https://github.com/GabrielCSTR/clockify-timer/wiki/Home) in the project wiki.
 
 ## Configuration
 

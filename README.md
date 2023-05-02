@@ -1,71 +1,65 @@
-# clockify-timer README
+<div align="center">
+<h1> Clockify Timer </h1>
 
-This is the README for your extension "clockify-timer". After writing up a brief description, we recommend including the following sections.
+![Clockify logo](assets/logo/logo-full.png)
+Clockify Timer - VSCode Extension for Time Tracking
 
-## Features
+</div>
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
-For example if there is an image subfolder under your extension project workspace:
+## Description
+The Clockify Timer is a VSCode extension that allows you to track time for your projects directly from the code editor. The extension integrates with [Clockify](https://clockify.me/), a time tracking tool that helps you keep track of your work hours, manage your projects, and generate reports.
 
-\!\[feature X\]\(images/feature-x.png\)
+With Clockify Timer, you can:
+- Start and stop timers directly from VSCode
+- View your time entries and project progress in a TreeView
+- Manage your Clockify projects, workspaces, clients, tasks, and tags
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
-## Requirements
+## Functions
+The Clockify Timer extension adds a Time Tracker view to VS Code, where you can start, stop, and switch between time entries. This view displays your current time entry and a list of your previous time entries.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+##Workspace and Project Selector
+The extension allows you to select the active workspace and project, making it easy to switch between different projects and keep track of your time accordingly.
 
-## Extension Settings
+## Installation
+You can install the Clockify Timer extension from the VSCode Marketplace or by running the following command in the Quick Open window (`Ctrl+P`):
+```
+ext install gabrielcstr.clockify-timer
+```
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Or you can just search for "Clockify Timer" in the Extensions view.
 
-For example:
+## Preview
+![Clockify TreeView screenshot](images/preview.png)
 
-This extension contributes the following settings:
+## Getting Started
+For more information on how to use the Clockify Timer extension, please see the [Getting Started](https://github.com/tobiaswaelde/vscode-clockify/wiki/Home) in the project wiki.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## Configuration
 
-## Known Issues
+| Settings key                                      | Type    | Default value | Description |
+| ------------------------------------------------- | ------- | ------------- | ------------------------------------------------------------------------------------------------------------------- |
+| apiKey                                            | string  |     `""`      | The clockify API key, get key in [Clockify](https://clockify.me/)
+| defaultWorkspaceId                                | string  |     `""`      | The ID of the default workspace in which start tracking (if no workspace ID is set in the workspaces settings.json)
+| fetchLimit                                        | number  | `200`         | Limit the number of items that will be fetched for displaying in the tree view.
+| hideSensitiveData                                 | boolean | `false`       | Hide sensitive data. Can be useful for screenshots.
+| showIds                                           | boolean | `false`       | Show IDs of the data.
+| workspaces.showNumberOfMembers                    | boolean | `false`       | Show the number of members for each workspace.
+| tracking.workspaceId                              | string  | `""`          | The ID of the default workspace.                                                                                    |
+| tracking.projectId                                | string  | `""`          | The ID of the default project in the workspace. `clockify.timer.tracking.workspaceId` must be set.                        |
+| tracking.taskId                                   | string  | `""`          | The ID of the default task in the workspace. `clockify.timer.tracking.workspaceId` must be set.                           |
+| tracking.billable                                 | boolean | `false`       | Check if Time Entry is billable.                                                                                    |
+| tracking.autostart                                | boolean | `false`       | Start tracking with opening the IDE.                                                                                |
+| tracking.autostop                                 | boolean | `true`        | Stop tracking with closing the IDE. 
+## Credits
+The Clockify Timer extension was developed by [Gabriel Carlos](https://github.com/GabrielCSTR) and is distributed under the MIT license.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/GabrielCSTR/clockify-timer/blob/master/LICENSE) file for details.
 
-## Release Notes
+## Acknowledgment
+- >[Clockify](https://clockify.me/) team for providing a great time tracking tool and API
 
-Users appreciate release notes as you update your extension.
+- >Inspired by the [vscode-clockify](https://github.com/tobiaswaelde/vscode-clockify) by [Tobias Waelde ](https://github.com/tobiaswaelde)
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**

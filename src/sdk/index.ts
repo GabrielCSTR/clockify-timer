@@ -22,7 +22,6 @@ import {
 import { User } from './types/user';
 import { Workspace, WorkspaceRequest } from './types/workspace';
 import { showError } from './util';
-import { ConfigurationTarget, workspace } from 'vscode';
 
 const BASE_URL = 'https://api.clockify.me/api/v1';
 

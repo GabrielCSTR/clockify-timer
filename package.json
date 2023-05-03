@@ -3,7 +3,7 @@
   "publisher": "GabrielCarlos",
   "displayName": "Clockify Timer",
   "description": "Extension Clockify timer (https://clockify.me/)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "icon": "assets/icon.ico",
   "engines": {
     "vscode": "^1.77.0"
@@ -24,7 +24,6 @@
       "activitybar": [
         {
           "id": "clockify-timer",
-          "name": "teste",
           "title": "Clockify Timer",
           "icon": "assets/icon.svg"
         }

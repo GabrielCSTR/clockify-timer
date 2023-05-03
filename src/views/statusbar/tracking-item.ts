@@ -8,7 +8,7 @@ import {
 } from 'vscode';
 import { Commands } from '../../config/commands';
 import { Tracking } from '../../helpers/tracking';
-let last90DaysAverage: moment.Duration;
+
 export class StatusBarTrackingItem {
 	public readonly clockItem: StatusBarItem;
 

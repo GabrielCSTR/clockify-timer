@@ -33,6 +33,10 @@ Or you can just search for "Clockify Timer" in the Extensions view.
 ## Getting Started
 For more information on how to use the Clockify Timer extension, please see the [Getting Started](https://github.com/GabrielCSTR/clockify-timer/wiki/Home) in the project wiki.
 
+## Preview
+![Clockify screenshot](docs/images/preview.png)
+
+
 ## Configuration
 
 | Settings key                                      | Type    | Default value | Description |
